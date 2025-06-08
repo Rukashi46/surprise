@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome 😁</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+    }
+    video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <video id="scaryVid" autoplay playsinline></video>
+
+  <script>
+    const video = document.getElementById("scaryVid");
+
+    // Use a jump scare video (change URL to whatever you want)
+    video.src = "https://cdn.pixabay.com/video/2022/11/01/135114-775344824_large.mp4";
+    video.volume = 1;
+
+    // Fullscreen logic
+    function launchFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.mozRequestFullScreen) { /* Firefox */
+        element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) { /* IE/Edge */
+        element.msRequestFullscreen();
+      }
+    }
+
+    // Trigger fullscreen and play on interaction
+    window.addEventListener("click", () => {
+      launchFullscreen(document.documentElement);
+      video.play();
+    });
+
+    // Auto fullscreen if allowed
+    window.onload = () => {
+      setTimeout(() => {
+        launchFullscreen(document.documentElement);
+        video.play();
+      }, 500);
+    };
+  </script>
+</body>
+</html>
